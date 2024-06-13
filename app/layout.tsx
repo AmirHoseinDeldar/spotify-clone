@@ -3,6 +3,8 @@ import { Figtree, Inter, Vazirmatn } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import SupabaseProvider from "@/providers/SupabaseProvider";
+import { UserProvider } from "@/providers/UserProvider";
+import ModalProvider from "@/providers/ModalProvider";
 
 const font = Vazirmatn({ subsets: ["latin"] });
 
@@ -20,9 +22,10 @@ export default function RootLayout({
     <html lang="fa" dir="rtl">
       <body className={font.className}>
         <SupabaseProvider>
-          <Sidebar>
-            {children}
-            </Sidebar>
+          <UserProvider>
+            <ModalProvider />
+            <Sidebar>{children}</Sidebar>
+          </UserProvider>
         </SupabaseProvider>
       </body>
     </html>

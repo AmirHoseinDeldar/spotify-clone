@@ -9,12 +9,14 @@ import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { twMerge } from "tailwind-merge";
 import { Button } from "./Button";
 import { FaUserAlt } from "react-icons/fa";
+import useAuthModal from "@/hooks/useAuthModal";
 
 interface HeaderProps {
   children: React.ReactNode;
   className?: string;
 }
 const Header: React.FC<HeaderProps> = ({ className, children }) => {
+  const authModal = useAuthModal();
   const router = useRouter();
 
   return (
@@ -55,12 +57,27 @@ const Header: React.FC<HeaderProps> = ({ className, children }) => {
           </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
-          <div className="flex gap-x-4 items-center">
+          {/* <div className="flex gap-x-4 items-center">
             <Button className="bg-white px-6 py-2">خروج</Button>
             <Button>
               <FaUserAlt />
             </Button>
-          </div>
+          </div> */}
+          <>
+            <div>
+              <Button
+                onClick={authModal.onOpen}
+                className="bg-transparent text-neutral-300 font-medium"
+              >
+                ثبت نام
+              </Button>
+            </div>
+            <div>
+              <Button onClick={authModal.onOpen} className="bg-white px-6 py-2">
+                ورود
+              </Button>
+            </div>
+          </>
         </div>
       </div>
       {children}
