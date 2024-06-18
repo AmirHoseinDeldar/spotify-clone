@@ -6,6 +6,7 @@ import SupabaseProvider from "@/providers/SupabaseProvider";
 import { UserProvider } from "@/providers/UserProvider";
 import ModalProvider from "@/providers/ModalProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
+import { getSongsByUserId } from "@/actions/getSongsByUserId";
 
 const font = Vazirmatn({ subsets: ["latin"] });
 
@@ -14,11 +15,14 @@ export const metadata: Metadata = {
   description: "Listen to music Farsi!",
 };
 
-export default function RootLayout({
+export const revaildate = 0;
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const userSongs = await getSongsByUserId();
   return (
     <html lang="fa" dir="rtl">
       <body className={font.className}>
@@ -26,7 +30,7 @@ export default function RootLayout({
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider />
-            <Sidebar>{children}</Sidebar>
+            <Sidebar songs={userSongs}>{children}</Sidebar>
           </UserProvider>
         </SupabaseProvider>
       </body>
