@@ -1,10 +1,10 @@
 import { Song } from "@/types";
 import useAuthModal from "./useAuthModal";
-import { usePlayers } from "./usePlayer";
+import { usePlayer } from "./usePlayer";
 import { useUser } from "./useUser";
 
 export const useOnPlay = (songs: Song[]) => {
-  const player = usePlayers();
+  const player = usePlayer();
   const authModal = useAuthModal();
   const { user } = useUser();
 
