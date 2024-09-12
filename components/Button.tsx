@@ -1,3 +1,5 @@
+/* eslint-disable react/display-name */
+
 import React, { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -21,3 +23,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
+
+// تنظیم displayName برای کامپوننت
+Button.displayName = "Button";
