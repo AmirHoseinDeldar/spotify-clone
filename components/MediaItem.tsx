@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 
-import  useLoadImage  from "@/hooks/useLoadImage";
+import useLoadImage from "@/hooks/useLoadImage";
 
 import { Song } from "@/types";
 
-import  {usePlayers}  from "@/hooks/usePlayer";
+import { usePlayer } from "@/hooks/usePlayer";
 
 interface MediaItemProps {
   data: Song;
@@ -16,7 +16,7 @@ interface MediaItemProps {
 // ghablan mesl ino zadim !!! pas Copy paste mikonam
 
 export const MediaItem: React.FC<MediaItemProps> = ({ data, onClick }) => {
-  const player = usePlayers();
+  const player = usePlayer();
   const imageUrl = useLoadImage(data);
   const handleClick = () => {
     if (onClick) {

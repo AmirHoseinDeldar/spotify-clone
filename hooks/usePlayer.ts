@@ -1,5 +1,5 @@
+import { set } from "react-hook-form";
 import { create } from "zustand";
-
 interface PlayerStore {
   ids: string[];
   activeId?: string;
@@ -8,7 +8,7 @@ interface PlayerStore {
   reset: () => void;
 }
 
-export const usePlayers = create<PlayerStore>((set) => ({
+export const usePlayer = create<PlayerStore>((set) => ({
   ids: [],
   activeId: undefined,
   setId: (id: string) => set({ activeId: id }),

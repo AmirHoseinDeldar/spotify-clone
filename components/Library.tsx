@@ -6,6 +6,7 @@ import React from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { TbPlaylist } from "react-icons/tb";
 import { MediaItem } from "./MediaItem";
+import { useOnPlay } from "@/hooks/useOnPlay";
 interface LibraryProps {
   songs: Song[];
 }
@@ -19,6 +20,8 @@ const Library: React.FC<LibraryProps> = ({ songs }) => {
     }
     return uploadModal.onOpen();
   };
+
+  const onPlay = useOnPlay(songs);
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-between px-5 pt-4">
@@ -34,7 +37,13 @@ const Library: React.FC<LibraryProps> = ({ songs }) => {
       </div>
       <div className="flex flex-col gap-y-2 mt-4 px-3">
         {songs.map((item) => (
-          <MediaItem onClick={() => {}} key={item.id} data={item} />
+          <MediaItem
+            onClick={(id: string) => {
+              onPlay(id);
+            }}
+            key={item.id}
+            data={item}
+          />
         ))}
       </div>
     </div>
